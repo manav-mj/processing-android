@@ -112,6 +112,13 @@ public class AndroidRunner implements DeviceListener {
       return false;
     }
 
+    if (listener instanceof AndroidEditor){
+      AndroidDebugger debugger = ((AndroidEditor) listener).getDebugger();
+      if (debugger.isEnabled()) {
+        debugger.startDebug(this, device);
+      }
+    }
+
     boolean status = false;
     if (comp == AndroidBuild.WATCHFACE || comp == AndroidBuild.WALLPAPER) {
       if (startSketch(build, device)) {
@@ -129,13 +136,6 @@ public class AndroidRunner implements DeviceListener {
         status = true;
       } else {
         listener.statusError("Could not start the sketch.");
-      }
-    }
-
-    if (listener instanceof AndroidEditor){
-      AndroidDebugger debugger = ((AndroidEditor) listener).getDebugger();
-      if (debugger.isEnabled()) {
-        debugger.startDebug(this, device);
       }
     }
 

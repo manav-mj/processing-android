@@ -59,7 +59,7 @@ public class AndroidDebugger extends Debugger {
     sketchClassName = runner.build.getSketchClassName();
 
     try {
-      device.forwardPort(TCP_PORT);
+//      device.forwardPort(TCP_PORT);
 
       // connect
       System.out.println("\n:debugger:Attaching Debugger");
@@ -99,8 +99,6 @@ public class AndroidDebugger extends Debugger {
       eventThread.start();
     } catch (IOException e) {
       System.out.println("ERROR : Cannot connect debugger");
-    } catch (InterruptedException e) {
-      e.printStackTrace();
     }
   }
 
